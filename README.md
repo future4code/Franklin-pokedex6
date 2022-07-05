@@ -1,11 +1,10 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Davi Emmanuel de Lima Rodrigues
+- Naiara Santos Gomes
 
-Link do Surge: www.link.com.br
+Link do Surge: <<link para o surge>>
 
 O que funciona:
 - Item 1

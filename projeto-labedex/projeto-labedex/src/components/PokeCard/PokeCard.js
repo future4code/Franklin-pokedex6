@@ -7,18 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import useRequestData from '../../hooks/useRequestData';
 import axios from 'axios';
-import { CardImage, CardStyled, DivTypes } from './styles';
-import PokeTypes from '../PokeTypes/PokeTypes';
 
-export default function PokeCard(props) {
-    const image = useRequestData({}, props.image)
-    // if(image.sprites){
-    //     props.isLoading(false)
-    //     console.log(image.sprites)
-    // }else{
-    //     props.isLoading(true)
-    // }
-    
   return (
     <CardStyled sx={{ maxWidth: 345 }}>
       <CardImage
@@ -39,7 +28,14 @@ export default function PokeCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
+        {
+        
+        props.isDelete ?
+          <Button size="small" onClick={() => removePokemon({...props, image})}>Remove</Button>
+          :
+          <Button size="small" onClick={() => savePokemon({...props, image})}>Share</Button>
+
+        }
         <Button size="small">Learn More</Button>
       </CardActions>
     </CardStyled>

@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
 import PokeCard from "../../components/PokeCard/PokeCard";
+
 import Loading from "../../components/Loading/Loading";
-import axios from "axios";
-import { DivCards, DivPokemons, StyledPagination } from "./styles";
+
+import { DivCards, DivPokemons } from "./styles";
+
 import Stack from "@mui/material/Stack";
 
-export default function Pokemon() {
-  const [pokemons, setPokemons] = useState({});
+import { usePokemon } from "../../hooks/PokemonProvider";
+
+export default function Labedex() {
+  const [pokemons, setPokemons] = useState([]);
   const [offset, setOffset] = useState(0);
   const [page, setPage] = useState(1);
+
+  const { buscarPokemons } = usePokemon();
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -16,25 +22,19 @@ export default function Pokemon() {
     if (value === 1) {
       setOffset(0);
     }
-    window.scrollTo(0, 0)
   };
 
   function getData() {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=21`)
-      .then((response) => {
-        console.log("total ", response.data.results);
-        setPokemons(response.data.results);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setPokemons(buscarPokemons());
   }
 
-  useEffect(getData, [offset]);
+  useEffect(() => {
+    getData();
+  }, [offset]);
 
   return (
     <DivCards>
+      <h1>LABEDEX</h1>
       <DivPokemons>
         {!pokemons || pokemons === undefined || Object.keys(pokemons) < 1 ? (
           <Loading />
@@ -44,23 +44,16 @@ export default function Pokemon() {
               <PokeCard
                 key={index}
                 name={pokemon.name}
-                image={pokemon.url}
+                image={pokemon.image}
                 id={index}
                 offset={offset}
-                isDelete={false}
+                isDelete={true}
               />
             );
           })
         )}
       </DivPokemons>
-      <Stack spacing={2}>
-        <StyledPagination
-          count={58}
-          page={page}
-          onChange={handleChange}
-          color={"primary"}
-        />
-      </Stack>
+      <Stack spacing={2}></Stack>
     </DivCards>
   );
 }

@@ -20,6 +20,7 @@ export default function Pokemon() {
     if(value === 1){
         setOffset(0)
     }
+    window.scrollTo(0, 0)
   };
 
   function getData() {

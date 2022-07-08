@@ -9,3 +9,9 @@ export const CardStyled = styled(Card)`
 export const CardImage = styled(CardMedia)`
     min-height: max-content;
 `
+
+export const DivTypes = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+`

@@ -7,25 +7,24 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import useRequestData from '../../hooks/useRequestData';
 import axios from 'axios';
-import { CardImage, CardStyled } from './styles';
-import { usePokemon } from '../../hooks/PokemonProvider';
-
-export default function PokeCard(props) {
-  const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.id}.png`;
-
-  const { savePokemon, removePokemon } = usePokemon();
 
   return (
     <CardStyled sx={{ maxWidth: 345 }}>
       <CardImage
         component="img"
         height="max-content"
-        image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.id + 1 + props.offset}.png`}
+        // image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.id + 1 + props.offset}.png`}
+        image={image.sprites && image.sprites.other.home.front_default}
       />
+      <DivTypes>
+        {image.types && image.types.map((type) => {return <PokeTypes type={type.type.name} />})}
+      </DivTypes>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" color={"primary"}>
           {props.name.toUpperCase()}
-          {` - #${props.id + 1 + props.offset}`}
+          {" #"}
+          {image && image.id}
+          {/* {` - #${props.id + 1 + props.offset}`} */}
         </Typography>
       </CardContent>
       <CardActions>

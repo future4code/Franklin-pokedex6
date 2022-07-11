@@ -8,7 +8,7 @@ export default function Pokemon() {
   const [pokemons, setPokemons] = useState({})
   const [offset, setOffset] = useState(0)
   const [page, setPage] = useState(1)
-  const [viewAllButtons, setMoreButton] = useState(false)
+  //const [viewAllButtons, setMoreButton] = useState(false)
 
   const handleChange = (event, value) => {
     setPage(value)

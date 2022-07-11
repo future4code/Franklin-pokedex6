@@ -1,33 +1,23 @@
-import React, {useState} from 'react'
+import React from 'react'
 import AppBar from '@mui/material/AppBar'
-import { StyledToolbar, LinkButton } from "./styled"
+import { StyledToolbar, LinkButton } from './styled'
 import Button from '@mui/material/Button'
 
 const Header = () => {
-    
-    const token = localStorage.getItem("token")
-    const [rightButtonText, setRightButtonText] = useState(token ? "Voltar p lista" : "Minha Labedex ")
-    
-
-    const logout = () => {
-        
-      }
-   
-    return (
-        <AppBar position="static">
-            <StyledToolbar>
-                <Button color="inherit">
-                    <LinkButton to={`/my-labedex`}>
-                        {rightButtonText}
-                    </LinkButton>
-                </Button>
-                <Button color="inherit">
-                
-                    
-                </Button>
-            </StyledToolbar>
-        </AppBar>
-    )
+  const token = localStorage.getItem('labedex')
+  const ButtonText =
+    window.location.pathname === '/' ? 'Minha Labedex' : 'Início'
+  const ButtonRedirect = window.location.pathname === '/' ? '/my-labedex' : '/'
+  return (
+    <AppBar position='static'>
+      <StyledToolbar>
+        <Button color='inherit'>
+          <LinkButton to={ButtonRedirect}>{ButtonText}</LinkButton>
+        </Button>
+        <Button color='inherit'></Button>
+      </StyledToolbar>
+    </AppBar>
+  )
 }
 
 export default Header

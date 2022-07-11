@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import PokeCard from '../../components/PokeCard/PokeCard'
-import Loading from '../../components/Loading/Loading'
-import axios from 'axios'
-import { DivCards, DivPokemons, StyledPagination } from './styles'
-import Stack from '@mui/material/Stack'
+import React, { useEffect, useState } from "react";
+import PokeCard from "../../components/PokeCard/PokeCard";
+import { BASE_URL } from "../../constants/urls";
+import useRequestData from "../../hooks/useRequestData";
+import Loading from "../../components/Loading/Loading";
+import axios from "axios";
+import { DivCards, DivPokemons, StyledPagination } from "./styles";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import useRequestPokemon from "../../hooks/useRequestPokemon";
+
 export default function Pokemon() {
   const [pokemons, setPokemons] = useState({})
   const [offset, setOffset] = useState(0)

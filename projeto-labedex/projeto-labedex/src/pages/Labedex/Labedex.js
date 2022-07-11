@@ -43,7 +43,7 @@ export default function Labedex() {
 
   return (
     <DivCards>
-      <h1>LABEDEX</h1>
+ 
       <DivPokemons>
         {pokemons.map((pokemon) => {
           return (

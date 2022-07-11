@@ -19,6 +19,7 @@ export default function Pokemon() {
   const handleChange = (event, value) => {
     setPage(value)
     setOffset((value - 1) * 20 + 1)
+    window.scrollTo(0, 0)
     if (value === 1) {
       setOffset(0)
     }

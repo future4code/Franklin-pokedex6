@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from "react";
-import PokeCard from "../../components/PokeCard/PokeCard";
-import { BASE_URL } from "../../constants/urls";
-import useRequestData from "../../hooks/useRequestData";
-import Loading from "../../components/Loading/Loading";
-import axios from "axios";
-import { DivCards, DivPokemons, StyledPagination } from "./styles";
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import useRequestPokemon from "../../hooks/useRequestPokemon";
+import React, { useEffect, useState } from 'react'
+import PokeCard from '../../components/PokeCard/PokeCard'
+import Loading from '../../components/Loading/Loading'
+import axios from 'axios'
+import { DivCards, DivPokemons, StyledPagination } from './styles'
+import Stack from '@mui/material/Stack'
 
 export default function Pokemon() {
-  const [pokemons, setPokemons] = useState({})
+  const [pokemons, setPokemons] = useState([])
+
   const [offset, setOffset] = useState(0)
   const [page, setPage] = useState(1)
-  const [viewAllButtons, setMoreButton] = useState(false)
 
   const handleChange = (event, value) => {
     setPage(value)
@@ -24,7 +19,18 @@ export default function Pokemon() {
     }
   }
 
-  function getData() {
+  const labedex = JSON.parse(localStorage.getItem('labedex'))
+
+  // a function that returns an array resulting from the subtraction of one array from another
+  const difference = () => {
+    const filtered = pokemons?.filter(
+      (pokemon) =>
+        pokemon.name !== labedex?.find((p) => p.name === pokemon.name)?.name
+    )
+    return filtered
+  }
+
+  useEffect(() => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=21`)
       .then((response) => {
@@ -33,31 +39,22 @@ export default function Pokemon() {
       .catch((error) => {
         console.log(error)
       })
-  }
+  }, [offset])
 
-  useEffect(getData, [offset])
-  // delete local token
   return (
     <DivCards>
-     
       <DivPokemons>
-        {!pokemons || pokemons === undefined || Object.keys(pokemons) < 1 ? (
-          <Loading />
-        ) : (
-          pokemons.map((pokemon, index) => {
-            return (
-              <PokeCard
-                page='home'
-                key={index}
-                name={pokemon.name}
-                image={pokemon.url}
-                id={index}
-                offset={offset}
-                isDelete={false}
-              />
-            )
-          })
-        )}
+        {difference()?.map((pokemon, index) => {
+          const OriginalId = pokemon.url.split('/')[6]
+          return (
+            <PokeCard
+              page='home'
+              key={index}
+              name={pokemon.name}
+              originalId={OriginalId}
+            />
+          )
+        })}
       </DivPokemons>
       <Stack spacing={2}>
         <StyledPagination

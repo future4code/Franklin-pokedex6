@@ -8,36 +8,25 @@ import { usePokemon } from '../../hooks/PokemonProvider'
 import { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
+import ShouldRender from './../ShouldRender/index'
 
 export default function PokeCard(props) {
   const navigate = useNavigate()
   const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.id}.png`
 
-  const [isVisible, setVisible] = useState(true)
+  const [DeleteCardVisible, SetDeleteVisible] = useState(true)
+  const [AddCardVisible, SetADDVisible] = useState(true)
   const { savePokemon, removePokemon } = usePokemon()
-  // const [originalId, setOriginalId] = useState(0)
+
   const renderImage = () => {
-    if (props?.page === 'labedex') {
-      if (props?.originalId !== undefined) {
-        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-          Number(props?.originalId) + 1
-        }.png`
-      }
-    } else {
-      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-        props?.id + 1 + props?.offset
-      }.png`
-    }
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props?.originalId}.png`
   }
 
   const renderID = () => {
-    if (props.page === 'labedex') {
-      return Number(props.originalId) + 1
-    } else {
-      return props.id + 1 + props.offset
-    }
+    return Number(props.originalId)
   }
-  if (isVisible === true) {
+
+  if (DeleteCardVisible === true && AddCardVisible === true) {
     return (
       <CardStyled sx={{ maxWidth: 345 }}>
         <CardImage component='img' height='max-content' image={renderImage()} />
@@ -59,7 +48,7 @@ export default function PokeCard(props) {
                 size='small'
                 onClick={() => {
                   removePokemon(props.name)
-                  setVisible(false)
+                  SetDeleteVisible(false)
                 }}
               >
                 Remover
@@ -68,24 +57,27 @@ export default function PokeCard(props) {
               <Button
                 size='small'
                 onClick={() => {
+                  SetADDVisible(false)
                   savePokemon({
                     ...props,
                     image,
-                    originalId: props.id + props.offset,
+                    originalId: props.originalId,
                   })
                 }}
               >
-                Adicionar
+                Adicionar a Dex
               </Button>
             )}
-            <Button
-              size='small'
-              onClick={() => {
-                navigate(`details/${props.name}`)
-              }}
-            >
-              Detalhes
-            </Button>
+            <ShouldRender if={props.page == 'labedex'}>
+              <Button
+                size='small'
+                onClick={() => {
+                  navigate(`/details/${props.name}`)
+                }}
+              >
+                Detalhes
+              </Button>
+            </ShouldRender>
           </CardActions>
         </Actions>
       </CardStyled>

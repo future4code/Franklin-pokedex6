@@ -26,7 +26,7 @@ const PokemonProvider = ({ children }) => {
     } else if (pokemonsArray != null) {
       localStorage.setItem('labedex', JSON.stringify([pokemonsArray, pokemon]))
     } else {
-      localStorage.setItem('labedex', JSON.stringify(pokemon))
+      localStorage.setItem('labedex', JSON.stringify([pokemon]))
     }
   }
 

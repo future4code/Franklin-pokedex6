@@ -39,11 +39,10 @@ export default function Labedex() {
 
   useEffect(() => {
     getData()
-  }, [offset])
+  }, [])
 
   return (
     <DivCards>
- 
       <DivPokemons>
         {pokemons.map((pokemon) => {
           return (

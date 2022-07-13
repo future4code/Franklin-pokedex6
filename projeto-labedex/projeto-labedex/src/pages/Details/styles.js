@@ -50,3 +50,17 @@ export const Image = styled.img`
   border-radius: 10px;
   margin: 0 auto;
 `
+
+export const DivImage = styled.div`
+    max-width: 345px;
+    height: 300px;
+    background: ${props => props.typeColor}98;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(${props => props.url});
+    background-size: 300px 300px;
+    background-repeat: no-repeat;
+    border-bottom-left-radius: 25%;
+    border-bottom-right-radius: 25%;
+`

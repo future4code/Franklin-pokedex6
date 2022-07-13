@@ -28,6 +28,16 @@
   color: #61dafb;
 }
 
+.progress-bar {
+  background-color: #ef534f;
+  border-radius: 4px;
+}
+
+.progress {
+  margin-bottom: 10px;
+  height: 20px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

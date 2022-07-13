@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import '../../App.css'
 import {
   DetailsContainer,
   ImageContainer,
@@ -8,14 +9,19 @@ import {
   StatsContainer,
   Scroll,
   Image,
+  DivImage
 } from './styles'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
+import PokeFrontAndBack from '../../components/PokeFrontAndBack/PokeFrontAndBack'
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import Stats from '../../components/Stats'
 
 export default function Details() {
   const [pokemon, setPokemon] = useState({})
   const { name } = useParams()
+  const [maxStat, setMaxStat] = useState(0)
 
   useEffect(() => {
     if (name) {
@@ -30,14 +36,20 @@ export default function Details() {
     }
   }, [name])
 
+  const max = (stats) => {
+    const stat = stats.map((stat) => (stat?.base_stat))
+    return(Math.max(...stat))
+  }
+
+  const valueBar = (maxValue, stat) => {
+    return ((stat/maxValue) * 100)
+  }
+
   return (
     <DetailsContainer>
       <ImageContainer>
         <Card>
-          <h1>Imagem Frontal</h1>
-          <Image src={pokemon?.sprites?.front_default} alt='pokemon' />
-          <h1>Imagem Traseira</h1>
-          <Image src={pokemon?.sprites?.back_default} alt='pokemon' />
+          <PokeFrontAndBack imageFront={pokemon?.sprites?.front_default} imageBack={pokemon?.sprites?.back_default} imageShiny={pokemon?.sprites?.front_shiny}/>
         </Card>
       </ImageContainer>
       <StatsContainer>
@@ -45,10 +57,12 @@ export default function Details() {
           <h1>Stats</h1>
           <CardContent>
             {pokemon?.stats?.map((stat) => (
+              <div>
               <p key={stat.stat.name}>
                 {stat.stat.name.toUpperCase()}:{' '}
-                <strong>{stat.base_stat}</strong>
               </p>
+              <ProgressBar now={valueBar(max(pokemon.stats), stat.base_stat)} label={stat.base_stat} />
+              </div>
             ))}
           </CardContent>
         </Card>

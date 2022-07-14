@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import '../../App.css'
+import { Typography } from '@mui/material'
 import {
   DetailsContainer,
   ImageContainer,
@@ -9,7 +10,13 @@ import {
   StatsContainer,
   Scroll,
   Image,
-  DivImage
+  DivImage,
+  Grid,
+  StatsName,
+  DivTypes,
+  Titulo,
+  DivTitles,
+  Move,
 } from './styles'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
@@ -17,6 +24,7 @@ import CardContent from '@mui/material/CardContent'
 import PokeFrontAndBack from '../../components/PokeFrontAndBack/PokeFrontAndBack'
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Stats from '../../components/Stats'
+import PokeTypes from '../../components/PokeTypes/PokeTypes'
 
 export default function Details() {
   const [pokemon, setPokemon] = useState({})
@@ -46,58 +54,52 @@ export default function Details() {
   }
 
   return (
-    <DetailsContainer>
+    <Grid>
+
       <ImageContainer>
         <Card>
           <PokeFrontAndBack imageFront={pokemon?.sprites?.front_default} imageBack={pokemon?.sprites?.back_default} imageShiny={pokemon?.sprites?.front_shiny}/>
         </Card>
       </ImageContainer>
+
+      <DivTypes>
+            {pokemon.types &&
+              pokemon.types.map((type) => {
+                return <PokeTypes type={type.type.name} />;
+              })}
+      </DivTypes>
+
       <StatsContainer>
         <Card>
-          <h1>Stats</h1>
+          <DivTitles>
+            <Typography variant='h5' color={'primary'} sx={{fontWeight: 700, fontSize: '24px'}}>Stats</Typography>
+          </DivTitles>
           <CardContent>
             {pokemon?.stats?.map((stat) => (
               <div>
-              <p key={stat.stat.name}>
+              <StatsName key={stat.stat.name}>
                 {stat.stat.name.toUpperCase()}:{' '}
-              </p>
+              </StatsName>
               <ProgressBar now={valueBar(max(pokemon.stats), stat.base_stat)} label={stat.base_stat} />
               </div>
             ))}
           </CardContent>
         </Card>
       </StatsContainer>
+      
       <SkillsContainer>
         <Card>
-          <h1>Types</h1>
-          <span>
-            <strong>
-              {pokemon.types?.map((type) => {
-                return (
-                  <>
-                    <span>{type.type.name}</span>
-                    <br></br>
-                  </>
-                )
-              })}
-            </strong>
-          </span>
-
-          <h1>Moves</h1>
-          <span>
+          <DivTitles>
+            <Typography variant='h5' color={'primary'} sx={{fontWeight: 700, fontSize: '24px'}}>Moves</Typography>
+          </DivTitles>          <span>
             <Scroll>
               {pokemon.moves?.map((move) => {
-                return (
-                  <>
-                    <span>{move.move.name}</span>
-                    <br></br>
-                  </>
-                )
+                return <Move>{move.move.name}</Move> 
               })}
             </Scroll>
           </span>
         </Card>
       </SkillsContainer>
-    </DetailsContainer>
+    </Grid>
   )
 }

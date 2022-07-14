@@ -4,12 +4,15 @@ import styled from "styled-components";
 
 const DivType = styled.div`
     background-color: ${props => props.color};
-    width: 60px;
+    width: 80px;
     text-align: center;
     padding: 10px;
     margin: 5px;
     border-radius: 30px;
     text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
 const Title = styled.p`

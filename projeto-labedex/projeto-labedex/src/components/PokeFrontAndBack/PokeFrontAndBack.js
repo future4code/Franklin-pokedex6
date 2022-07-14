@@ -19,7 +19,7 @@ export default function PokeFrontAndBack(props) {
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
+          <TabList onChange={handleChange} aria-label="lab API tabs example" variant='fullWidth'>
             <Tab label="Frente" value="1" />
             <Tab label="Traseira" value="2" />
             <Tab label="Shiny" value="3" />

@@ -1,7 +1,6 @@
 import styled from "styled-components"
 
 export const DivImage = styled.div`
-    max-width: 300px;
     min-width: 300px;
     height: 300px;
     display: flex;
@@ -11,4 +10,5 @@ export const DivImage = styled.div`
     background-size: 300px 300px;
     background-repeat: no-repeat;
     background-position: center;
+    margin: 0 !important;
 `

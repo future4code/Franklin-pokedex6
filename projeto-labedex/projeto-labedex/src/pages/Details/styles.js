@@ -3,46 +3,36 @@ import styled from 'styled-components'
 export const DetailsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 0px;
+  padding: 10px;
   border-radius: 10px;
-  margin-top: 5%;
 `
 
 export const ImageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  width: 30%;
+  width: 100%;
   border-radius: 10px;
+  grid-area: 1 / 1 / 4 / 3;
 `
 export const StatsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  width: 30%;
+  width: 100%;
   border-radius: 10px;
+  grid-area: 1 / 3 / 5 / 5;
 `
 
 export const SkillsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  width: 30%;
-  border-radius: 10px;
-`
-export const Scroll = styled.div`
-  overflow-y: scroll;
-  height: 300px;
   width: 100%;
   border-radius: 10px;
+  grid-area: 1 / 5 / 5 / 7;
+`
+export const Scroll = styled.div`
+  margin: 40px 20px;
+  overflow-y: scroll;
+  height: 315px;
+  border-radius: 10px;
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid lightgrey;
+  &::-webkit-scrollbar-thumb {
+    background: red;
+  }
 `
 
 export const Image = styled.img`
@@ -63,4 +53,41 @@ export const DivImage = styled.div`
     background-repeat: no-repeat;
     border-bottom-left-radius: 25%;
     border-bottom-right-radius: 25%;
+`
+
+export const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 5px;
+  padding: 20px;
+  margin-top: 10px;
+`
+
+export const StatsName = styled.p`
+  font-weight: 600;
+  margin-bottom: 5px;
+`
+
+export const DivTypes = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    height: 50px;
+    grid-area: 4 / 1 / 5 / 3;
+`
+
+export const DivTitles = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  border-bottom: solid 1px lightgrey;
+  padding-bottom: 5px;
+`
+
+export const Move = styled.p`
+  margin: 0;
+  text-transform: capitalize;
 `

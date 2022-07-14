@@ -29,13 +29,13 @@
 }
 
 .progress-bar {
-  background-color: #ef534f;
+  background-color: #ef534f !important;
   border-radius: 4px;
 }
 
 .progress {
   margin-bottom: 10px;
-  height: 20px;
+  height: 20px !important;
 }
 
 @keyframes App-logo-spin {

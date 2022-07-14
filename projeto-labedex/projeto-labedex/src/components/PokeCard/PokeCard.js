@@ -72,19 +72,29 @@ export default function PokeCard(props) {
                   Remover
                 </Button>
               ) : (
-                <Button
-                  size="small"
-                  onClick={() => {
-                    SetADDVisible(false);
-                    savePokemon({
-                      ...props,
-                      image,
-                      originalId: props.originalId,
-                    });
-                  }}
-                >
-                  Adicionar a Dex
-                </Button>
+                <>
+                  <Button
+                    size="small"
+                    onClick={() => {
+                      SetADDVisible(false);
+                      savePokemon({
+                        ...props,
+                        image,
+                        originalId: props.originalId,
+                      });
+                    }}
+                  >
+                    Adicionar a Dex
+                  </Button>
+                  <Button
+                    size="small"
+                    onClick={() => {
+                      navigate(`/details/${props.name}`);
+                    }}
+                  >
+                    Detalhes
+                  </Button>
+                </>
               )}
               <ShouldRender if={props.page == "labedex"}>
                 <Button

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Pagination from "@mui/material/Pagination";
-import CardContent from '@mui/material/CardContent'
+import CardContent from '@mui/material/CardContent';
+import Typography from "@mui/material/Typography";
 
 
 
@@ -27,13 +28,9 @@ export const CardTest = styled(CardContent)`
   margin-bottom: 20px;
 `;
 
-export const Title = styled.div`
-  align-items: center;
-  display: absolute;
+export const Vc = styled(Typography)`
+
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: red;
-  font: bold;
-  font-size: bold;
-`;
+`

@@ -8,6 +8,7 @@ import { DivCards, DivPokemons } from './styles'
 import Stack from '@mui/material/Stack'
 
 import { usePokemon } from '../../hooks/PokemonProvider'
+import Naoadd from './Naoadd'
 
 export default function Labedex() {
   const initialValue = {
@@ -44,7 +45,7 @@ export default function Labedex() {
   return (
     <DivCards>
       <DivPokemons>
-        {pokemons.map((pokemon) => {
+        {pokemons == 0 ? <Naoadd /> : pokemons.map((pokemon) => {
           return (
             <PokeCard
               page='labedex'

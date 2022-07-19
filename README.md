@@ -4,12 +4,13 @@ Nome dos integrantes:
 - Davi Emmanuel de Lima Rodrigues
 - Naiara Santos Gomes
 
-Link do Surge: <<link para o surge>>
+Link do Surge: <<https://rare-pet.surge.sh/>>
 
 O que funciona:
-- Item 1
-- Item 2
+- É possivel visualizar todos os pokemons na tela de inicio
+- Adiciona pokemons a sua labedex
+- É possivel ver quais pokemons foram adicionados 
+- É possivel ver os detalhes do pokemons
+- É possivel remover pokemons
 
-O que não funciona: 
-- Item 3
-- Item 4
+
